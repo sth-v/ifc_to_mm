@@ -1,0 +1,148 @@
+GRAPHQL http://51.250.47.166:8080/v1/graphql
+Content-Type: application/json
+Content-Encoding: gzip
+X-Hasura-Role: admin
+X-Hasura-Admin-Secret: mysecretkey
+
+
+query {
+  test1 {
+    rootless {
+      object {
+        name
+        children {
+          ... on GqlGroup {
+            children {
+              ... on GqlObject3D {
+                children {
+                  ... on GqlGeometry {
+                    name
+                    geometry
+                    material
+                    layers
+                    castShadow
+                    receiveShadow
+                    type
+                    uuid
+                    userData {
+                      properties
+                    }
+                    matrix
+                  }
+                }
+                layers
+                matrix
+                name
+                type
+                uuid
+                userData {
+                  properties
+                }
+              }
+            }
+            name
+            matrix
+            layers
+            type
+            uuid
+            userData {
+              gui {
+                colors
+                id
+                key
+                require
+                name
+              }
+              properties
+            }
+          }
+        }
+        layers
+        matrix
+        receiveShadow
+        type
+        uuid
+      }
+      geometries {
+        data {
+          ... on Data1 {
+            attributes {
+              ... on Attributes3 {
+                normal {
+                  array
+                  itemSize
+                  normalized
+                  type
+                }
+                position {
+                  array
+                  itemSize
+                  normalized
+                  type
+                }
+              }
+            }
+          }
+        }
+        type
+        uuid
+      }
+      metadata {
+        generator
+        type
+        version
+      }
+      materials {
+        ... on MeshPhongMaterial {
+          uuid
+          color
+          depthFunc
+          colorWrite
+          depthTest
+          depthWrite
+          emissive
+          flatShading
+          name
+          reflectivity
+          refractionRatio
+          shininess
+          side
+          specular
+          stencilFail
+          stencilFunc
+          type
+          stencilZPass
+          stencilZFail
+          stencilWriteMask
+          stencilWrite
+          stencilRef
+          stencilFuncMask
+        }
+      }
+    }
+  }
+}
+
+###
+GRAPHQL http://51.250.47.166:8081/v1/graphql
+Content-Type: application/json
+Content-Encoding: gzip
+X-Hasura-Role: admin
+X-Hasura-Admin-Secret: mysecretkey
+
+
+query {
+  mfbGrid {
+    all
+  }
+}
+###
+GRAPHQL http://localhost:8081/v2/graphql
+Content-Type: application/json
+Content-Encoding: gzip
+X-Hasura-Role: admin
+X-Hasura-_Admin-Secret: mysecretkey
+
+{ root }
+
+

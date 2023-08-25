@@ -1,0 +1,6 @@
+.env
+node_modules
+prod.env
+schema.graphql
+bin
+temp

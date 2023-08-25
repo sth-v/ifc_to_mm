@@ -1,0 +1,7 @@
+.idea
+vol
+node_modules
+schema.graphql
+bin
+.env
+temp
