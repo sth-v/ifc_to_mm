@@ -44,7 +44,7 @@ def thr(source, path=EXPORT_PATH, prefix=NAME):
                              NO_WIRE_INTERSECTION_CHECK=NO_WIRE_INTERSECTION_CHECK)
 
     itr = geom.iterate(file_or_filename=fl, settings=settings)
-    for o in itr:
+    for i,o in enumerate(itr):
 
         try:
             _name = cb(o.data.name)
@@ -68,10 +68,11 @@ def thr(source, path=EXPORT_PATH, prefix=NAME):
                 AMesh(name=o.data.name, geometry=ageomdict[gmuid], material=amatdict[hex(hash(_name)) + "_mat"],
                       uuid=str(o.data.id), properties=props(o)))
 
-
+            print(f'export {i} item {_name}', flush=True, end="\r")
         except Exception as err:
             print(err)
             pass
+    print("\ndumping to filesystem ...")
     dump_all_to_fs(path=path, prefix=prefix)
     print("All Done")
 
@@ -91,4 +92,10 @@ def dump_all_to_fs(path, prefix=NAME):
 
 
 if __name__ == "__main__":
-    thr(source='/Users/andrewastakhov/dev/W1-W4.Ifc', prefix=NAME, path=EXPORT_PATH)
+    import sys
+    if len(sys.argv[1:])>=2:
+        NAME=sys.argv[2]
+    if len(sys.argv[1:]) >= 3:
+        EXPORT_PATH = sys.argv[3]
+    print(sys.argv[1], NAME, EXPORT_PATH)
+    thr(source=sys.argv[1], prefix=NAME, path=EXPORT_PATH)
