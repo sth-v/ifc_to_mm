@@ -3,29 +3,23 @@ import random
 import uuid
 import os
 import ifcopenshell
+from ifcopenshell import geom
 from OCC.Core.Tesselator import ShapeTesselator
 from mmcore.base import AGroup, AMesh
 from mmcore.geom.materials import ColorRGB
 from mmcore.base.geom.utils import create_buffer_from_dict
 
 NAME = "export"
-EXPORT_PATH=f"{os.getcwd()}/tmp"
+EXPORT_PATH = f"{os.getcwd()}/tmp"
 
 
-UUID=NAME.lower().replace("-","_")
-mep=AGroup(name=NAME,uuid=UUID)
-DISABLE_TRIANGULATION=True
-NO_WIRE_INTERSECTION_CHECK=True
-
-from ifcopenshell import geom
+UUID = NAME.lower().replace("-","_")
+mep = AGroup(name=NAME,uuid=UUID)
+DISABLE_TRIANGULATION = True
+NO_WIRE_INTERSECTION_CHECK = True
 
 
-#with open("/Users/andrewastakhov/dev/SW_walls.ifc", "r", encoding="utf-8") as f:
-##nodes=step_to_nodes(data.data)
 
-#import dill
-#with open("data/v2.pkl","wb") as fl:
-#    dill.dump
 mats={}
 gms={}
 colors={}
@@ -77,6 +71,7 @@ def thr(source, path=EXPORT_PATH,prefix=NAME):
             pass
     dump_all_to_fs(path=path, prefix=prefix)
     print("All Done")
+
 def dump_group(name):
     return nms[name].root()
 
@@ -92,11 +87,4 @@ def dump_all_to_fs(path, prefix=NAME):
 
 
 if __name__=="__main__":
-
-
-    #main_th=th.Thread(target=thr, args=(itr,))
-    #main_th.start()
-    thr(source='/Users/andrewastakhov/dev/W1-W4.Ifc', prefix="W1-W4", path=EXPORT_PATH)
-    #serve.start()
-    #import IPython,mmcore
-    #IPython.embed(header=f"[mmcore {mmcore.__version__()}]")
+    thr(source='/Users/andrewastakhov/dev/W1-W4.Ifc', prefix=NAME, path=EXPORT_PATH)
